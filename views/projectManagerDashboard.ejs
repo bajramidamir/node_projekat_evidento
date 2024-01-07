@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidento</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="font-montserrat">
+    <%- include('partials/_projectManagerNav', { user: user }) %>
+
+    <h1 class="text-3xl font-medium p-4 my-4">
+        My projects
+    </h1>
+
+
+    <div class="grid grid-cols-2 text-slate-100 gap-4">
+        <% projects.forEach(project => { %>
+            <div class="p-4 m-4 bg-blue-400 rounded-md">
+                <h1 class="text-2xl mb-4 font-medium">
+                    <%= project.project_name %>
+                </h1>
+                <p class="mb-4">
+                    <%= project.project_description %>
+                </p>
+                <form action="/project_manager_dashboard/view_project" method="get">
+                    <input type="hidden" name="projectName" value="<%= project.project_name %>">
+                    <button type="submit" class="p-2 transition-all duration-150 ease-in-out hover:bg-blue-600 bg-blue-500 rounded-md">
+                        View Project
+                    </button>
+                </form>
+            </div>
+        <% }); %>
+    </div>
+
+</body>
+</html>

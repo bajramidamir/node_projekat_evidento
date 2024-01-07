@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Evidento - Projects</title>
+</head>
+<body class="font-montserrat">
+    
+    <%- include('partials/_projectManagerNav', { user: user }) %>
+
+    <div>
+    <div class=" p-4 m-4  text-xl bg-slate-100 shadow-md rounded-md">
+        <h1 class="text-3xl text-left mb-8">
+            Project creation panel
+        </h1>
+      <form action="/project_manager_dashboard/create_project" method="post">
+        <label for="projectName" class="block text-gray-800 font-medium mb-2 ">Project Name</label>
+        <input type="text" name="projectName" class="block p-2 mb-4" required />
+        <label for="projectDescription" class="block text-gray-800 font-medium mb-2">Project Description</label>
+        <textarea id="projectDescription" name="projectDescription" rows="4" class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
+        <fieldset class="mb-4">
+            <legend class="text-gray-800 font-medium mb-4">
+              Assign Employees
+            </legend>
+            <ul class="px-6 mb-4">
+              <% employees.forEach(employee => { %>
+                  <li class="mb-2">
+                      <label class="flex items-center">
+                          <input type="checkbox" class="form-checkbox text-blue-500" name="assignedUsers" value="<%= employee.username %>">
+                          <span class="mx-2 text-gray-800">
+                            <%= employee.username %>
+                          </span>
+                      </label>
+                  </li>
+              <% }); %>
+          </ul>
+        </fieldset>
+
+        <input type="hidden" name="assignedProjectManager" value="<%= user.username %>">
+
+        <label for="startDate" class="block text-gray-800 font-medium mb-2">Start Date</label>
+        <input type="date" class="block mb-4" name="startDate" >
+
+        <label for="endDate" class="block text-gray-800 font-medium mb-2">End Date</label>
+        <input type="date" class="block mb-4" name="endDate" >
+
+        <button class="bg-blue-500 text-slate-100 p-2 rounded-md mb-2" type="submit">
+          Create project
+        </button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

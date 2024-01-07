@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Document</title>
+</head>
+
+<body class="font-montserrat">
+    <%- include('partials/_adminNav', { user: user }) %>
+        <div class="bg-slate-100 p-4 m-4 text-center">
+            <h1 class="text-2xl">
+                Edit User: <%= username %>          
+            </h1>
+            <div class="text-center">
+                <form action="/admin_dashboard/update_user" method="post">
+                    <input type="hidden" name="username" value="<%= username %>">
+                    <input type="text" id="newUsername" class="block p-2 mb-2" name="newUsername" placeholder="New username" required>
+                    <select name="newRole" class="block p-2 mb-4 bg-white" required>
+                        <option value="project manager">Project Manager</option>
+                        <option value="employee">Employee</option>
+                      </select>
+                    <button class="block p-2 bg-blue-500 text-slate-100 transition-all duration-150 ease-in-out hover:bg-blue-700 rounded-md" type="submit">
+                        Update User
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+
+</body>
+
+</html>

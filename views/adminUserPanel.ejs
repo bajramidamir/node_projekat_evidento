@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <title>Admin - Users</title>
+</head>
+<body class="font-montserrat">
+
+    <%- include('partials/_adminNav', { user: user }) %>
+
+
+    
+      <div class="grid grid-cols-1">
+        <div class="text-center p-4 m-4 text-xl bg-slate-100 shadow-md rounded-md">
+          <h1 class="text-3xl text-left mb-4">
+            User creation panel
+          </h1>
+          <form action="/admin_dashboard/create_user" method="post">
+            <input type="text" name="username" placeholder="Username" class="block p-2 mb-4 mx-auto" required />
+            <input type="text" name="password" placeholder="Password" class="block p-2 mb-4 mx-auto" required />
+            <input type="text" name="firstName" placeholder="First name" class="block p-2 mb-4 mx-auto" required>
+            <input type="text" name="lastName" placeholder="Last name" class="block p-2 mb-4 mx-auto" required>
+            <select name="role" class="block p-2 mb-4 mx-auto bg-white" required>
+              <option value="project manager">Project Manager</option>
+              <option value="employee">Employee</option>
+            </select>
+            <button class="bg-blue-500 text-slate-100 p-2 rounded-md mb-2" type="submit">
+              Create user
+            </button>
+          </form>
+        </div>
+  
+        <div class="bg-slate-100 p-4 m-4 text-xl">
+          <h2 class="text-3xl mb-12">
+            Current users
+          </h2>
+
+          
+          <div class="overflow-auto relative">
+            <table class="table-auto font-light w-full bg-slate-200">
+              <thead class="mb-4">
+                <tr class="bg-blue-400 text-slate-100">
+                  <th class="p-2">Username</th>
+                  <th>Role</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user => { %>
+                  <tr class="odd:bg-slate-300 h-16">
+                    <td class="text-center"><%= user.username %></td>
+                    <td class="text-center"><%= user.role %></td>
+                    <td class="text-center">
+                      <form action="/admin_dashboard/delete_user" method="post">
+                        <input type="hidden" name="username" value="<%= user.username %>">
+                        <button type="submit" class="p-2 hover:bg-red-500 rounded-md transition-all duration-150 ease-in-out">
+                          <img src="/images/trash.svg" alt="trash" class="w-8"> 
+                        </button>
+                      </form>
+                    </td>
+                    <td class="text-center">
+                      <form action="/admin_dashboard/edit_user" method="get">
+                        <input type="hidden" name="username" value="<%= user.username %>">
+                        <button type="submit" class="p-2 hover:bg-blue-500 rounded-md transition-all duration-150 ease-in-out">
+                          <img src="/images/edit.svg" alt="edit" class="w-8">
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+      
+
+            
+
+        </div>
+  
+      </div>
+    
+    
+  
+  
+    
+  
+  
+  
+
+</body>
+
+</html>

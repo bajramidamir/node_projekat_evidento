@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidento - <%= project.project_name %> Overview</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="font-montserrat">
+    
+    <%- include('partials/_projectManagerNav', { user: user }); %>
+
+    <div class="bg-slate-100 w-full p-8 text-gray-800">
+        <h1 class="mb-4 text-3xl font-medium">
+            <%= project.project_name %>
+        </h1>
+        <p class="mb-4 text-xl">
+            <%= project.project_description %>
+        </p>
+
+        <div class="overflow-auto relative mb-12">
+            <table class="table-auto w-full">
+                <thead class="mb-4">
+                    <tr class="bg-blue-400 text-slate-100">
+                      <th class="p-2">Assigned users</th>
+                      <th class="p-2">Full name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% employees.forEach(employee => { %>
+                        <tr class="odd:bg-slate-300 h-16">
+                            <td class="p-4 text-center">
+                                <%= employee.username %>
+                            </td>
+                            <td class="p-4 text-center">
+                                <%= employee.first_name %> <%= employee.last_name %>
+                            </td>
+                        </tr>
+                   <% }); %>
+                </tbody>
+            </table>
+        </div>
+       
+        <div class="text-center mb-12 text-3xl">
+            <div class="mb-2">
+                <h1>Start date: <%= project.start_date %> </h1>
+            </div>
+            <div class="mb-2">
+                <h1>End date: <%= project.end_date %> </h1>
+            </div>
+        </div>
+
+        <form action="/project_manager_dashboard/create_task" method="post" class="mb-4 text-xl">
+            <input type="hidden" value="<%= project.project_name %>" name="projectName">
+            <label for="taskName" class="text-gray-800 font-medium mb-4">Task name</label>
+            <input type="text" class="block p-2 mb-4 bg-white" name="taskName">
+            <label for="taskDescription" class="text-gray-800 font-medium mb-4">Task description</label>
+            <textarea name="taskDescription" rows="4" class="mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
+            <label for="assignedUser" class="text-gray-800 font-medium mb-4">Assign To Employee</label>
+            <select name="assignedUser" class="block bg-white mb-4 p-2">
+                <% employees.forEach(employee => { %>
+                    <option value="<%= employee.username %>">
+                        <%= employee.username %>
+                    </option>
+                <% }); %>
+            </select>
+            <label for="dueDate" class="mb-4 text-gray-800 font-medium">Due date</label>
+            <input type="date" class="block mb-4" name="dueDate">
+            <button type="submit" class="p-2 bg-blue-600 rounded-md text-slate-100 text-xl">Create task</button>            
+        </form>
+
+
+        <h1 class="text-2xl my-12 font-medium">
+            <%= project.project_name %> Tasks
+        </h1> 
+        <div class="grid grid-cols-2 gap-8">
+            <% tasks.forEach(task => { %>
+                <div class="p-4 bg-blue-500 text-gray-50 text-xl rounded-md drop-shadow-xl">
+                    <h1 class="text-2xl font-medium mb-4"> <%= task.task_name %> </h1>
+                    <h1 class="mb-4"> <%= task.description %> </h1>
+                    <h1 class="mb-4"> Status: <%= task.status %> </h1>
+                    <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
+                    <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
+                    <h1 class="mb-4">Due: <%= task.due_date %> </h1>
+                </div>
+            <% }); %>
+        </div>
+        
+
+    </div>
+
+</body>
+</html>

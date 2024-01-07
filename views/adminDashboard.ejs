@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evidento - Admin</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  </head>
+  <body class="font-montserrat">
+
+
+    <%- include('partials/_adminNav', { user: user }) %>
+
+    <h1 class="text-5xl text-center my-8">
+      General overview
+    </h1>
+    <div class="flex">
+      <p class="text-xl text-center mx-4">
+        Total users: <%= userCount.count %>
+      </p>
+      <p class="text-xl text-center">
+        Total projects:  <%= projectCount.count %>
+      </p>
+      
+    </div>
+    
+  </body>
+</html>
