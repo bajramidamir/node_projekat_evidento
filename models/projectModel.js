@@ -145,6 +145,34 @@ async function createTask(projectName, taskName, taskDescription, assignedUser, 
     };
 };
 
+async function getProjectsForEmployee(employeeId) {
+    const client = await pool.connect();
+    try {
+        const result = await client.query(`SELECT * FROM projects 
+        INNER JOIN public.project_employees pe on projects.project_id = pe.project_id 
+        WHERE user_id = $1;`, 
+        [employeeId]);
+        return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
+async function getTasksForEmployeeOnProject(employeeId, projectId) {
+    const client = await pool.connect();
+    console.log(employeeId);
+    console.log(projectId);
+    try {
+        const result = await client.query(`SELECT * FROM project_task 
+        INNER JOIN public.users u on u.user_id = project_task.assigned_to 
+        WHERE u.user_id = $1 AND project_id = $2;`, 
+        [employeeId, projectId]);
+        return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
 module.exports = {
     getProjectCount,
     createNewProject,
@@ -154,5 +182,7 @@ module.exports = {
     getInfoForProject,
     getProjectTasks,
     getProjectsForProjectManagerId,
-    createTask
+    createTask,
+    getProjectsForEmployee,
+    getTasksForEmployeeOnProject,
 };

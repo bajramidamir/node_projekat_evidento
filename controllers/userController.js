@@ -11,7 +11,7 @@ const getHashedPassword = async (password) => {
         return hashedPassword;
     } catch (err) {
         console.error(err);
-        throw err; // Re-throw the error so that it can be caught in the calling function
+        throw err;
     }
 };
 
@@ -23,7 +23,7 @@ const loginUser = async (req, res) => {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     const userCookie = cookie.serialize('user', JSON.stringify({
-                        id: user.id,
+                        id: user.user_id,
                         username: user.username,
                         role: user.role,
                         firstName: user.first_name,
