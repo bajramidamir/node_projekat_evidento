@@ -44,7 +44,7 @@ async function createNewProject(projectName, projectDescription, assignedUsers, 
             const userId = userIdQuery.rows[0].user_id;
             const userRole = userRoleQuery.rows[0].role;
         
-            await client.query("INSERT INTO project_employees(user_id, project_id, role, hours_worked) VALUES ($1, $2, $3, $4)", [userId, projectId, userRole, 0]);
+            await client.query("INSERT INTO project_employees(user_id, project_id, role) VALUES ($1, $2, $3)", [userId, projectId, userRole]);
         }
         
         // Commit the transaction
