@@ -85,6 +85,7 @@
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
                     <h1 class="mb-4">Due: <%= task.due_date %> </h1>
+                    <h1>Hours worked on task: <%= task.hours_worked %> </h1>
                 </div>
             <% }); %>
         </div>

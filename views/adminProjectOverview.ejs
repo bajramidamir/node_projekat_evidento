@@ -14,7 +14,7 @@
     <%- include('partials/_adminNav', { user: user }); %>
 
     <div class="bg-slate-100 w-full p-8 text-gray-800">
-        <h1 class="mb-4 text-3xl font-medium">
+        <h1 class="mb-4 text-5xl font-medium">
             <%= project.project_name %>
         </h1>
         <p class="mb-4 text-xl">
@@ -62,11 +62,11 @@
 
         <form action="/admin_dashboard/create_task" method="post" class="mb-4 text-xl">
             <input type="hidden" value="<%= project.project_name %>" name="projectName">
-            <label for="taskName" class="text-gray-800 font-medium mb-4">Task name</label>
-            <input type="text" class="block p-2 mb-4 bg-white" name="taskName">
-            <label for="taskDescription" class="text-gray-800 font-medium mb-4">Task description</label>
-            <textarea name="taskDescription" rows="4" class="mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
-            <label for="assignedUser" class="text-gray-800 font-medium mb-4">Assign To Employee</label>
+            <label for="taskName" class="text-gray-800 font-medium text-2xl mb-4">Task name</label>
+            <input type="text" class="block p-2 mb-4 text-xl bg-white" name="taskName">
+            <label for="taskDescription" class="text-gray-800 font-medium mb-4 text-2xl">Task description</label>
+            <textarea name="taskDescription" rows="4" class="mb-4 w-full text-xl p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
+            <label for="assignedUser" class="text-gray-800 font-medium mb-4 text-2xl">Assign To Employee</label>
             <select name="assignedUser" class="block bg-white mb-4 p-2">
                 <% employees.forEach(employee => { %>
                     <option value="<%= employee.username %>">
@@ -74,9 +74,9 @@
                     </option>
                 <% }); %>
             </select>
-            <label for="dueDate" class="mb-4 text-gray-800 font-medium">Due date</label>
-            <input type="date" class="block mb-4" name="dueDate">
-            <button type="submit" class="p-2 bg-blue-600 rounded-md text-slate-100 text-xl">Create task</button>            
+            <label for="dueDate" class="mb-4 text-gray-800 text-2xl font-medium">Due date</label>
+            <input type="date" class="block mb-8 text-xl" name="dueDate">
+            <button type="submit" class="p-2 bg-blue-600 rounded-md text-slate-100 text-2xl">Create task</button>            
         </form>
 
 
@@ -92,6 +92,7 @@
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
                     <h1 class="mb-4">Due: <%= task.due_date %> </h1>
+                    <h1>Hours worked on task: <%= task.hours_worked %> </h1>
                 </div>
             <% }); %>
         </div>
