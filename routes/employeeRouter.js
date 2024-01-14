@@ -6,6 +6,8 @@ const projectController = require('../controllers/projectController');
 
 router.get('/', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeDashboard);
 router.get('/view_project', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeViewProject);
+router.get("/update_task", ensureAuthenticated, ensureEmployee, employeeController.getEmployeeUpdateTask);
+router.post("/update_task", ensureAuthenticated, ensureEmployee, projectController.updateTask);
 
 
 

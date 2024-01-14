@@ -160,14 +160,32 @@ async function getProjectsForEmployee(employeeId) {
 
 async function getTasksForEmployeeOnProject(employeeId, projectId) {
     const client = await pool.connect();
-    console.log(employeeId);
-    console.log(projectId);
     try {
         const result = await client.query(`SELECT * FROM project_task 
         INNER JOIN public.users u on u.user_id = project_task.assigned_to 
         WHERE u.user_id = $1 AND project_id = $2;`, 
         [employeeId, projectId]);
         return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
+async function getTaskInfoById(taskId) {
+    const client = await pool.connect();
+    try {
+        const result = await client.query("SELECT * FROM project_task WHERE task_id = $1", [taskId]);
+        return result.rows[0];
+    } finally {
+        client.release();
+    };
+};
+
+async function updateTask(status, hoursWorked, projectId, taskId) {
+    const client = await pool.connect();
+    try {
+        await client.query("UPDATE project_task SET status = $1, hours_worked = hours_worked + $2 WHERE project_id = $3 AND task_id = $4",
+        [status, hoursWorked, projectId, taskId]);
     } finally {
         client.release();
     };
@@ -185,4 +203,6 @@ module.exports = {
     createTask,
     getProjectsForEmployee,
     getTasksForEmployeeOnProject,
+    getTaskInfoById,
+    updateTask
 };

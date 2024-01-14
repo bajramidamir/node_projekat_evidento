@@ -11,6 +11,7 @@ const getEmployeeDashboard = async (req, res) => {
         res.status(500).send("Internal Server Error");
     };
 };
+
 const getEmployeeViewProject = async (req, res) => {
     try {
         const { projectName, projectId, employeeId } = req.query;
@@ -24,8 +25,21 @@ const getEmployeeViewProject = async (req, res) => {
     };
 };
 
+const getEmployeeUpdateTask = async (req, res) => {
+    try {
+        const { taskId, projectName } = req.query;
+        const taskInfo = await projectModel.getTaskInfoById(taskId);
+        const projectInfo = await projectModel.getInfoForProject(projectName);
+        res.render("employeeUpdateTask", { user: req.user, taskInfo, projectInfo });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    };
+};
+
 
 module.exports = {
     getEmployeeDashboard,
     getEmployeeViewProject,
+    getEmployeeUpdateTask
 }

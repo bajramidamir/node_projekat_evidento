@@ -19,10 +19,22 @@ const createTask = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
-    }
-}
+    };
+};
+
+const updateTask = async (req, res) => {
+    const {projectId, taskId, status, hoursWorked } = req.body;
+    try {
+        await projectModel.updateTask(status, hoursWorked, projectId, taskId);
+        res.redirect('/employee_dashboard');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    };
+};
 
 module.exports = {
     createProject,
-    createTask
+    createTask,
+    updateTask
 };
