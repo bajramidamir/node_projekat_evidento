@@ -1,22 +1,22 @@
 <nav class="bg-blue-500 flex items-center justify-between p-4">
-  <div>
+  <div class="hidden md:block">
     <h1 class="text-3xl text-slate-100">
       Welcome <%= user.username %>
     </h1>
   </div>
   <div class="text-slate-100">
     <ul class="flex items-center align-middle">
-      <li class="mr-4">
+      <li>
         <a class="hover:bg-blue-700 transition-all duration-150 ease-in-out rounded-md p-4" href="/admin_dashboard">
           Overview
         </a>
       </li>
-      <li class="mr-4">
-        <a class="hover:bg-blue-700 transition-all duration-150 ease-in-out p-4 rounded-md" href="/admin_dashboard/users">
+      <li>
+        <a class="hover:bg-blue-700 transition-all duration-150 ease-in-out rounded-md p-4" href="/admin_dashboard/users">
           Users
         </a>
       </li>
-      <li class="mr-4">
+      <li>
         <a class="hover:bg-blue-700 transition-all duration-150 ease-in-out rounded-md p-4" href="/admin_dashboard/projects">
           Projects
         </a>

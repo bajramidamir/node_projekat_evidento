@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidento - Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body class="font-montserrat bg-slate-100">
+
+    <%- include('partials/_employeeNav', { user: user }); %>
+
+    <div id="chatMessages" class="p-2 md:mx-32 flex flex-col" data-user='<%= JSON.stringify(user) %>'>
+        <% messages.forEach(message => { %>
+            <div class="<%= message.username === user.username ? 'self-start' : 'self-end' %> md:w-1/2 my-4">
+                <div class="<%= message.username === user.username ? 'bg-blue-400' : 'bg-slate-200' %> rounded-md p-2">
+                    <p class="<%= message.username === user.username ? 'text-white' : 'text-slate-700' %> md:text-2xl font-semibold rounded-md p-2"><%= message.username %></p>
+                    <div class="p-4">
+                        <p class="<%= message.username === user.username ? 'text-gray-100' : 'text-black' %> md:text-xl font-normal">
+                            <%= message.content %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+    
+    
+    <form id="chatForm" class="my-10 flex mx-auto">
+        <input type="text" id="messageInput" class="p-2 text-xl mx-2 rounded-md w-full" placeholder="Type your message...">
+        <button type="submit" class="bg-blue-500 p-2 mx-2 rounded-md">
+            <img src="/images/send.svg" class="w-8 invert" alt="send">
+        </button>
+    </form>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const user = JSON.parse(chatMessages.getAttribute('data-user'));
+    
+        const socket = io();
+    
+        document.getElementById('chatForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const messageInput = document.getElementById('messageInput');
+            const messageContent = messageInput.value.trim();
+    
+            if (messageContent !== '') {
+                const message = {
+                    username: user.username,
+                    content: messageContent,
+                };
+                console.log(message);
+                socket.emit('chatMessage', message);
+                messageInput.value = '';
+            }
+        });
+    
+        socket.on('chatMessage', function (message) {
+            const chatMessages = document.getElementById('chatMessages');
+
+            const messageContainer = document.createElement('div');
+
+            const isCurrentUser = message.username === user.username;
+
+            messageContainer.className = isCurrentUser
+                ? 'bg-blue-400 p-4 rounded-md mb-4 self-start'
+                : 'bg-slate-200 p-4 rounded-md mb-4 self-end';
+
+
+            const usernameElement = document.createElement('p');
+            usernameElement.className = isCurrentUser ? 'text-white text-xl font-semibold' : 'text-slate-700 text-xl font-semibold';
+            usernameElement.innerText = message.username;
+
+            const contentContainer = document.createElement('div');
+            contentContainer.className = 'p-4';
+
+            const contentElement = document.createElement('p');
+            contentElement.className = isCurrentUser ? 'text-gray-100 text-xl font-normal' : 'text-black text-xl font-normal';
+            contentElement.innerText = message.content;
+
+            contentContainer.appendChild(contentElement);
+            messageContainer.appendChild(usernameElement);
+            messageContainer.appendChild(contentContainer);
+
+            chatMessages.appendChild(messageContainer);
+        });
+
+    </script>
+    
+</body>
+</html>

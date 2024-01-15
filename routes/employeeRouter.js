@@ -3,13 +3,13 @@ const router = express.Router();
 
 const employeeController = require('../controllers/employeeController');
 const projectController = require('../controllers/projectController');
+const chatController = require('../controllers/chatController');
 
 router.get('/', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeDashboard);
 router.get('/view_project', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeViewProject);
-router.get("/update_task", ensureAuthenticated, ensureEmployee, employeeController.getEmployeeUpdateTask);
-router.post("/update_task", ensureAuthenticated, ensureEmployee, projectController.updateTask);
-
-
+router.get('/update_task', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeUpdateTask);
+router.post('/update_task', ensureAuthenticated, ensureEmployee, projectController.updateTask);
+router.get('/chat', ensureAuthenticated, ensureEmployee, chatController.getChatView);
 
 
 
