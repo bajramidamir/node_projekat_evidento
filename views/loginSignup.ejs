@@ -11,7 +11,7 @@
 </head>
 <body class="bg-slate-200 font-montserrat">
     
-    <div class="my-14">
+    <div class="my-14 px-6">
         <h1 class="text-5xl font-semibold my-4 text-center decoration-dotted underline decoration-blue-500 underline-offset-8">
             Evidento
         </h1>
@@ -21,18 +21,18 @@
     </div>
    
 
-    <div class="grid md:grid-cols-2 px-8 mx-8">
+    <div class="grid grid-cols-1 px-8 md:grid-cols-2 md:mx-8">
         <div class="mx-auto">
-            <img src="/images/home.svg" class="w-72" alt="Landing page image">
+            <img src="/images/home.svg" class="md:w-72 w-40" alt="Landing page image">
         </div>
 
-        <div class="rounded-md font-medium shadow-lg mx-auto">
-            <div class="text-xl transition-all p-8 ">
+        <div class="rounded-md font-medium mt-12 md:mt-0 shadow-lg md:mx-auto">
+            <div class="text-xl transition-all p-2 md:p-8">
                 <h1 class="mb-12 text-3xl">Login</h1>
                 <form action="/login" method="post" class="text-center">
-                    <input class="mb-2 px-2 py-1 rounded-sm mx-auto block" placeholder="Username" required name="username" type="text">
-                    <input class="mb-2 px-2 py-1 rounded-sm mx-auto block" placeholder="Password" required name="password" type="password" >
-                    <button class="block mx-auto hover:bg-blue-800 duration-200 hover:shadow-lg bg-blue-500 text-slate-100 rounded-lg my-4 px-4 py-2 ">Login</button>
+                    <input class="md:mb-2 mb-6 px-2 py-1 rounded-sm mx-auto block" placeholder="Username" required name="username" type="text">
+                    <input class="md:mb-2 mb-6 px-2 py-1 rounded-sm mx-auto block" placeholder="Password" required name="password" type="password" >
+                    <button class="block mx-auto text-2xl hover:bg-blue-800 duration-200 hover:shadow-lg bg-blue-500 text-slate-100 rounded-lg my-4 px-4 py-2 ">Login</button>
                 </form>
             </div>
     </div>
