@@ -4,15 +4,15 @@
         Welcome <%= user.firstName %>
       </h1>
     </div>
-    <div class="text-slate-100 md:text-xl">
+    <div class="text-slate-100 text-sm md:text-xl">
       <ul class="flex items-center align-middle">
-        <li class="mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-4 rounded-md" href="/employee_dashboard/chat">
+        <li class="mr-2 md:mr-4">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/employee_dashboard/chat">
             Chat
           </a>
         </li>
         <li>
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-4 rounded-md" href="/employee_dashboard">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/employee_dashboard">
             Dashboard
           </a>
         </li>
@@ -20,7 +20,7 @@
     </div>
     <div>
       <form action="/employee_dashboard/logout" method="get">
-        <button class="p-3 bg-blue-400  text-slate-100 rounded-md md:text-xl transition-all duration-150 hover:bg-blue-700 hover:shadow-md" type="submit">
+        <button class="p-2 md:p-4 bg-blue-400  text-slate-100 rounded-md text-sm md:text-xl transition-all duration-150 hover:bg-blue-700 hover:shadow-md" type="submit">
           Logout
         </button>
       </form>

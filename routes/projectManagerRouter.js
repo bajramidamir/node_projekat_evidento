@@ -11,6 +11,7 @@ router.get('/view_project', ensureAuthenticated, ensureProjectManager, projectMa
 router.post('/create_project', ensureAuthenticated, ensureProjectManager, projectController.createProject);
 router.post('/create_task', ensureAuthenticated, ensureProjectManager, projectController.createTask);
 router.get('/chat', ensureAuthenticated, ensureProjectManager, chatController.getChatView);
+router.get('/get_project_report', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectReport);
 
 
 

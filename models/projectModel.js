@@ -191,6 +191,25 @@ async function updateTask(status, hoursWorked, projectId, taskId) {
     };
 };
 
+async function getReportForProject(projectManagerId, projectName) {
+    const client = await pool.connect();
+    const query = `SELECT p.project_id, p.project_name, p.project_description, p.start_date, p.end_date, 
+    CONCAT(u.first_name, ' ', u.last_name) AS employee_name, pt.task_id, pt.task_name, pt.description,
+    pt.status, pt.assigned_to, pt.due_date, pt.created_at, pt.updated_at, SUM(pt.hours_worked) AS total_hours_worked
+    FROM projects p 
+    JOIN project_task pt ON p.project_id = pt.project_id
+    LEFT JOIN users u ON pt.assigned_to = u.user_id
+    WHERE p.project_manager_id = $1 AND p.project_name = $2
+    GROUP BY p.project_id, u.user_id, pt.task_id
+    ORDER BY p.project_id, u.user_id, pt.task_id;`;
+    try {
+        const result = await client.query(query, [projectManagerId, projectName]);
+        return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
 module.exports = {
     getProjectCount,
     createNewProject,
@@ -204,5 +223,6 @@ module.exports = {
     getProjectsForEmployee,
     getTasksForEmployeeOnProject,
     getTaskInfoById,
-    updateTask
+    updateTask,
+    getReportForProject
 };

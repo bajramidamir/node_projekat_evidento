@@ -4,19 +4,19 @@
         Welcome <%= user.firstName %>
       </h1>
     </div>
-    <div class="text-slate-100 md:text-xl">
+    <div class="text-slate-100 text-sm md:text-xl">
       <ul class="flex items-center align-middle">
-        <li class="mr-4">
+        <li class="mr-2 md:mr-4">
           <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/project_manager_dashboard">
-            My Projects
+            Dashboard
           </a>
         </li>
-        <li class="mr-4">
+        <li class="mr-2 md:mr-4">
           <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/project_manager_dashboard/projects">
             Create Project
           </a>
         </li>
-        <li class="mr-4">
+        <li class="mr-2 md:mr-4">
           <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/project_manager_dashboard/chat">
             Chat
           </a>
@@ -25,7 +25,7 @@
     </div>
     <div>
       <form action="/project_manager_dashboard/logout" method="get">
-        <button class="p-3 bg-blue-400 hover:bg-blue-700 hover:shadow-md transition-all duration-150  text-slate-100 rounded-md text-xl" type="submit">
+        <button class="p-2 md:p-4 bg-blue-400 hover:bg-blue-700 hover:shadow-md transition-all duration-150 text-slate-100 rounded-md text-sm md:text-xl" type="submit">
           Logout
         </button>
       </form>
