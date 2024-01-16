@@ -16,7 +16,7 @@
     <div id="chatMessages" class="p-2 md:mx-32 flex flex-col" data-user='<%= JSON.stringify(user) %>'>
         <% messages.forEach(message => { %>
             <div class="<%= message.username === user.username ? 'self-start' : 'self-end' %> md:w-1/2 my-4">
-                <div class="<%= message.username === user.username ? 'bg-blue-400' : 'bg-slate-200' %> rounded-md p-2">
+                <div class="<%= message.username === user.username ? 'bg-blue-500' : 'bg-slate-200' %> rounded-md p-2">
                     <p class="<%= message.username === user.username ? 'text-white' : 'text-slate-700' %> md:text-2xl font-semibold rounded-md p-2">
                         <%= message.username %>
                     </p>
