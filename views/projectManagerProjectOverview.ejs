@@ -14,10 +14,10 @@
     <%- include('partials/_projectManagerNav', { user: user }); %>
 
     <div class="bg-slate-100 w-full p-8 text-gray-800">
-        <h1 class="mb-4 text-3xl font-medium">
+        <h1 class="mb-4 text-3xl md:text-5xl font-medium">
             <%= project.project_name %>
         </h1>
-        <p class="mb-4 text-xl">
+        <p class="mb-4 text-xl md:text-3xl">
             <%= project.project_description %>
         </p>
 
@@ -44,12 +44,12 @@
             </table>
         </div>
        
-        <div class="text-center mb-12 text-3xl">
-            <div class="mb-2">
-                <h1>Start date: <%= project.start_date %> </h1>
+        <div class="text-xl md:text-3xl">
+            <div class="mb-4">
+                <h1>Start date: <span id="startDate"><%= project.start_date %></span></h1>
             </div>
-            <div class="mb-2">
-                <h1>End date: <%= project.end_date %> </h1>
+            <div class="mb-4">
+                <h1>End date: <span id="endDate"><%= project.end_date %></span></h1>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
         <h1 class="text-2xl my-12 font-medium">
             <%= project.project_name %> Tasks
         </h1> 
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <% tasks.forEach(task => { %>
                 <div class="p-4 bg-blue-500 text-gray-50 text-xl rounded-md drop-shadow-xl">
                     <h1 class="text-2xl font-medium mb-4"> <%= task.task_name %> </h1>
@@ -84,14 +84,31 @@
                     <h1 class="mb-4"> Status: <%= task.status %> </h1>
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
-                    <h1 class="mb-4">Due: <%= task.due_date %> </h1>
+                    <h1 class="mb-4">Due: <span class="taskEndDate"><%= task.due_date %></span> </h1>
                     <h1>Hours worked on task: <%= task.hours_worked %> </h1>
                 </div>
             <% }); %>
         </div>
-        
-
     </div>
+
+    <script>
+        // formatting the dates so it's prettier
+        const startDateElement = document.getElementById('startDate');
+        const endDateElement = document.getElementById('endDate');
+        const taskEndDateElements = document.getElementsByClassName('taskEndDate');
+    
+        const formatDate = (rawDate) => {
+            const date = new Date(rawDate);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString(undefined, options);
+        };
+    
+        startDateElement.textContent = formatDate(startDateElement.textContent);
+        endDateElement.textContent = formatDate(endDateElement.textContent);
+        for(taskEndDateElement of taskEndDateElements) {
+            taskEndDateElement.textContent = formatDate(taskEndDateElement.textContent);
+        }
+    </script>
 
 </body>
 </html>

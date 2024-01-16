@@ -44,7 +44,7 @@
                     <h1 class="mb-4"> Status: <%= task.status %> </h1>
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
-                    <h1 class="mb-4">Due: <%= task.due_date %> </h1>
+                    <h1 class="mb-4">Due: <span class="taskEndDate"><%= task.due_date %></span> </h1>
                     <h1 class="mb-4">Hours worked on task: <%= task.hours_worked %></h1>
                     <form action="/employee_dashboard/update_task" method="get">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
@@ -62,6 +62,7 @@
         // formatting the dates so it's prettier
         const startDateElement = document.getElementById('startDate');
         const endDateElement = document.getElementById('endDate');
+        const taskEndDateElements = document.getElementsByClassName('taskEndDate');
     
         const formatDate = (rawDate) => {
             const date = new Date(rawDate);
@@ -71,6 +72,9 @@
     
         startDateElement.textContent = formatDate(startDateElement.textContent);
         endDateElement.textContent = formatDate(endDateElement.textContent);
+        for(taskEndDateElement of taskEndDateElements) {
+            taskEndDateElement.textContent = formatDate(taskEndDateElement.textContent);
+        }
     </script>
     
 </body>
