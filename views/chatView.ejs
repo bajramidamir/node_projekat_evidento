@@ -11,7 +11,7 @@
 </head>
 <body class="font-montserrat bg-slate-100">
 
-    <%- include('partials/_employeeNav', { user: user }); %>
+    <%- include('partials/_chatNav', { user: user }); %>
 
     <div id="chatMessages" class="p-2 md:mx-32 flex flex-col" data-user='<%= JSON.stringify(user) %>'>
         <% messages.forEach(message => { %>

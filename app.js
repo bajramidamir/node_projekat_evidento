@@ -17,6 +17,7 @@ const loginRouter = require('./routes/loginRouter');
 const adminRouter = require('./routes/adminRouter');
 const employeeRouter = require('./routes/employeeRouter');
 const projectManagerRouter = require('./routes/projectManagerRouter');
+const chatRouter = require('./routes/chatRouter');
 
 // middleware
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +36,7 @@ app.use('/', loginRouter);
 app.use('/admin_dashboard', adminRouter);
 app.use('/employee_dashboard', employeeRouter);
 app.use('/project_manager_dashboard', projectManagerRouter);
+app.use('/chat', chatRouter);
 
 
 // view engine
