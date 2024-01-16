@@ -12,23 +12,23 @@
 <body class="font-montserrat">
     <%- include('partials/_projectManagerNav', { user: user }) %>
 
-    <h1 class="text-3xl font-medium p-4 my-4">
+    <h1 class="px-6 mt-8 text-center text-3xl md:text-start md:text-3xl">
         My projects
     </h1>
 
 
-    <div class="grid grid-cols-1 md:grid-cols-2 text-slate-100 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 text-slate-100 my-8 gap-4">
         <% projects.forEach(project => { %>
             <div class="p-4 m-4 bg-blue-400 rounded-md">
-                <h1 class="text-2xl mb-4 font-medium">
+                <h1 class="md:text-3xl text-xl mb-4 font-medium">
                     <%= project.project_name %>
                 </h1>
-                <p class="mb-4">
+                <p class="mb-4 md:text-xl">
                     <%= project.project_description %>
                 </p>
                 <form action="/project_manager_dashboard/view_project" method="get">
                     <input type="hidden" name="projectName" value="<%= project.project_name %>">
-                    <button type="submit" class="p-2 transition-all duration-150 ease-in-out hover:bg-blue-600 bg-blue-500 rounded-md">
+                    <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl hover:bg-blue-600 bg-blue-500 rounded-md">
                         View Project
                     </button>
                 </form>

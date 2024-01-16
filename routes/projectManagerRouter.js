@@ -3,12 +3,14 @@ const router = express.Router();
 
 const projectController = require('../controllers/projectController');
 const projectManagerController = require('../controllers/projectManagerController');
+const chatController = require('../controllers/chatController');
 
 router.get('/', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectManagerDashboard);
 router.get('/projects', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectManagerProjectsPanel);
 router.get('/view_project', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectManagerViewProject);
 router.post('/create_project', ensureAuthenticated, ensureProjectManager, projectController.createProject);
 router.post('/create_task', ensureAuthenticated, ensureProjectManager, projectController.createTask);
+router.get('/chat', ensureAuthenticated, ensureProjectManager, chatController.getChatView);
 
 
 
