@@ -14,14 +14,14 @@
     <%- include('partials/_adminNav', { user: user }); %>
 
     <div class="bg-slate-100 w-full p-8 text-gray-800">
-        <h1 class="mb-4 text-5xl font-medium">
+        <h1 class="mb-4 text-3xl md:text-5xl font-medium">
             <%= project.project_name %>
         </h1>
-        <p class="mb-4 text-xl">
+        <p class="mb-4 text-xl md:text-3xl">
             <%= project.project_description %>
         </p>
 
-        <p class="mb-4 text-xl">
+        <p class="mb-4 text-xl md:text-3xl">
             Project manager: <%= projectManager.first_name %> <%= projectManager.last_name %>
         </p>
 
@@ -48,19 +48,21 @@
             </table>
         </div>
        
-        <div class="mb-12 text-3xl">
-            <div class="mb-2">
-                <h1>Start date: <%= project.start_date %> </h1>
+        <div class="text-xl md:text-3xl">
+            <div class="mb-4">
+                <h1>Start date: <span id="startDate"><%= project.start_date %></span></h1>
             </div>
-            <div class="mb-2">
-                <h1>End date: <%= project.end_date %> </h1>
+            <div class="mb-4">
+                <h1>End date: <span id="endDate"><%= project.end_date %></span></h1>
             </div>
         </div>
 
-        <h1 class="text-center text-3xl mb-4">Tasks</h1>
+        <h1 class="hidden md:block text-2xl md:text-3xl my-6 md:my-12 font-medium">
+            Tasks
+        </h1>
 
 
-        <form action="/admin_dashboard/create_task" method="post" class="mb-4 text-xl">
+        <form action="/admin_dashboard/create_task" method="post" class="my-8 text-xl">
             <input type="hidden" value="<%= project.project_name %>" name="projectName">
             <label for="taskName" class="text-gray-800 font-medium text-2xl mb-4">Task name</label>
             <input type="text" class="block p-2 mb-4 text-xl bg-white" name="taskName">
@@ -83,7 +85,7 @@
         <h1 class="text-2xl my-12 font-medium">
             <%= project.project_name %> Tasks
         </h1> 
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <% tasks.forEach(task => { %>
                 <div class="p-4 bg-blue-500 text-gray-50 text-xl rounded-md drop-shadow-xl">
                     <h1 class="text-2xl font-medium mb-4"> <%= task.task_name %> </h1>
@@ -96,12 +98,21 @@
                 </div>
             <% }); %>
         </div>
-        
-        
-        
-        
-
     </div>
+    <script>
+        // formatting the dates so it's prettier
+        const startDateElement = document.getElementById('startDate');
+        const endDateElement = document.getElementById('endDate');
+    
+        const formatDate = (rawDate) => {
+            const date = new Date(rawDate);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString(undefined, options);
+        };
+    
+        startDateElement.textContent = formatDate(startDateElement.textContent);
+        endDateElement.textContent = formatDate(endDateElement.textContent);
+    </script>
 
 </body>
 </html>
