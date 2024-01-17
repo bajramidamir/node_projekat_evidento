@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidento - Report</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-montserrat bg-slate-100">
+
+    <div class="fixed top-0 w-full bg-slate-100 p-2">
+        <div class="flex justify-end">
+            <form action="/project_manager_dashboard/download_pdf">
+                <button class="bg-blue-500 transition-all duration-150 hover:bg-blue-700 hover:shadow-md p-2 mx-2 text-white rounded-md" type="submit">
+                    Download as PDF
+                </button>
+            </form>
+            <a href="/project_manager_dashboard">
+                <button class="bg-blue-500 transition-all duration-150 hover:bg-blue-700 hover:shadow-md p-2 mx-2 text-white rounded-md">
+                    Go back
+                </button>
+            </a>
+            
+        </div>
+    </div>
+    
+    <div class="my-24 text-3xl">
+
+        <h1 class="px-4">
+            <%= reports[0].project_name %> report
+        </h1>
+        <h1 class="px-4">
+            Project description: <%= reports[0].project_description %>
+        </h1>
+
+        <% reports.forEach(report => { %>
+            <div class="my-4 px-8 text-xl">
+                <p>Employee: <%= report.employee_name %></p>
+                <p>Task id: <%= report.task_id %></p>
+                <p>Task name: <%= report.task_name %></p>
+                <p>Task status: <%= report.status %></p>
+                <p>Total hours worked on task: <%= report.total_hours_worked %></p>
+    
+            </div>
+        <% }); %>
+    
+    </div>
+    
+</body>
+</html>

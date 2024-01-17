@@ -37,8 +37,8 @@ const getProjectManagerViewProject = async (req, res) => {
 const getProjectReport = async (req, res) => {
     try {
         const { projectManagerId, projectName } = req.query;
-        const report = await projectModel.getReportForProject(projectManagerId, projectName);
-        res.send(report);
+        const reports = await projectModel.getReportForProject(projectManagerId, projectName);
+        res.render('projectManagerProjectReport', { user: req.user, reports });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
