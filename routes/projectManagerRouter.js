@@ -12,6 +12,7 @@ router.post('/create_project', ensureAuthenticated, ensureProjectManager, projec
 router.post('/create_task', ensureAuthenticated, ensureProjectManager, projectController.createTask);
 router.get('/chat', ensureAuthenticated, ensureProjectManager, chatController.getChatView);
 router.get('/get_project_report', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectReport);
+router.post('/download_pdf', ensureAuthenticated, ensureProjectManager, projectManagerController.downloadReportAsPdf);
 
 
 
