@@ -210,6 +210,7 @@ async function getReportForProject(projectManagerId, projectName) {
     };
 };
 
+
 module.exports = {
     getProjectCount,
     createNewProject,
@@ -224,5 +225,5 @@ module.exports = {
     getTasksForEmployeeOnProject,
     getTaskInfoById,
     updateTask,
-    getReportForProject
+    getReportForProject,
 };

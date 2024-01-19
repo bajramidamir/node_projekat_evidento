@@ -13,11 +13,10 @@ const config = {
 const pool = new pg.Pool(config);
 
 
-async function insertUser(username, password, role, firstName, lastName) {
+async function insertUser(username, password, role, firstName, lastName, email) {
     const client = await pool.connect();
     try {
-        const result = await client.query("INSERT INTO users(username, password, role, first_name, last_name) VALUES ($1, $2, $3, $4, $5) RETURNING *", [username, password, role, firstName, lastName]);
-        return result.rows[0];
+        await client.query("INSERT INTO users(username, password, role, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *", [username, password, role, firstName, lastName, email]);
     } finally {
         client.release();
     }
@@ -36,12 +35,13 @@ async function getUserByUsername(username) {
 async function getAllUsers() {
     const client = await pool.connect();
     try {
-        const result = await client.query("SELECT * FROM users WHERE username != 'admin';");
+        const result = await client.query("SELECT * FROM users WHERE username != 'admin' ORDER BY user_id ASC;");
         return result.rows;
     } finally {
         client.release();
     };
 };
+
 
 async function getAllEmployees() {
     const client = await pool.connect();

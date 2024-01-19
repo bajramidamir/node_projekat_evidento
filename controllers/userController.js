@@ -48,10 +48,10 @@ const loginUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-    const { username, password, firstName, lastName, role } = req.body;
+    const { username, password, email, firstName, lastName, role } = req.body;
     try {
         const hashedPassword = await getHashedPassword(password);
-        await userModel.insertUser(username, hashedPassword, role, firstName, lastName);
+        await userModel.insertUser(username, hashedPassword, role, firstName, lastName, email);
         res.redirect('/admin_dashboard/users');
     } catch (error) {
         console.error(error);

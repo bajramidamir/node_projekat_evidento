@@ -2,6 +2,8 @@ const projectModel = require('../models/projectModel');
 const userModel = require('../models/userModel');
 const puppeteer = require('puppeteer');
 const cookie = require('cookie');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const getProjectManagerDashboard = async (req, res) => {
     try {
@@ -57,7 +59,6 @@ const downloadReportAsPdf = async (req, res) => {
             value,
             domain: 'localhost',
         }));
-        
 
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -80,11 +81,52 @@ const downloadReportAsPdf = async (req, res) => {
         res.status(500).send("Internal Server Error");
     };
 };
+const reviewTask = async (req, res) => {
+    try {
+        const { taskId, projectName } = req.body;
+        const taskInfo = await projectModel.getTaskInfoById(taskId);
+        const employees = await projectModel.getEmployeesForProject(projectName);
+        res.render('projectManagerTaskReview', { user: req.user, taskInfo, employees });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    };
+};
+const sendReviewEmail = async (req, res) => {
+    try {
+        const { username, status, message } = req.body;
+        const employeeInfo = await userModel.getUserByUsername(username); 
+
+        // hardcoded menadzerko email, for demonstration purposes
+        const transporter = nodemailer.createTransport({
+            service: 'outlook',
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD,
+            }
+        });
+
+        const mailOptions = {
+            from: process.env.EMAIL,
+            to: employeeInfo.email,
+            subject: 'Task review status',
+            text: `Status: ${status}\n\n${message}\n`
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.redirect('/project_manager_dashboard');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    };
+};
 
 module.exports = {
     getProjectManagerDashboard,
     getProjectManagerProjectsPanel,
     getProjectManagerViewProject,
     getProjectReport,
-    downloadReportAsPdf
+    downloadReportAsPdf,
+    reviewTask,
+    sendReviewEmail
 }

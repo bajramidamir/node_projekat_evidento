@@ -13,6 +13,8 @@ router.post('/create_task', ensureAuthenticated, ensureProjectManager, projectCo
 router.get('/chat', ensureAuthenticated, ensureProjectManager, chatController.getChatView);
 router.get('/get_project_report', ensureAuthenticated, ensureProjectManager, projectManagerController.getProjectReport);
 router.post('/download_pdf', ensureAuthenticated, ensureProjectManager, projectManagerController.downloadReportAsPdf);
+router.post('/review_task', ensureAuthenticated, ensureProjectManager, projectManagerController.reviewTask);
+router.post('/send_review_email', ensureAuthenticated, ensureProjectManager, projectManagerController.sendReviewEmail);
 
 
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidento - Task Review</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-montserrat">
+    
+    <%- include('partials/_projectManagerNav', { user: user }) %>
+
+    <div class="p-4 m-4 bg-slate-100">
+        <div class="mb-12">
+            <h1 class="font-semibold mb-2 text-3xl"> 
+                <%= taskInfo.task_name %>
+            </h1>
+            <h1 class="font-medium text-xl">
+                <%= taskInfo.description %>
+            </h1>
+            <% const assignedEmployee = employees.find(employee => employee.user_id === taskInfo.assigned_to); %>
+            <h1 class="font-medium text-xl">
+                Assigned to: <%= assignedEmployee.first_name %> <%= assignedEmployee.last_name %>
+            </h1>
+        </div>
+        <div class="my-4">
+            <form action="/project_manager_dashboard/send_review_email" method="post">
+                <input type="hidden" name="username" value="<%= assignedEmployee.username %>">
+                <label for="status" class="font-semibold text-2xl">
+                    Task status
+                </label>
+                <select name="status" class="block p-2 shadow-lg mt-2 mb-8 bg-white text-xl text-medium ">
+                    <option value="In progress">In progress</option>
+                    <option value="Done">Done</option>
+                </select>
+                <label for="message" class="font-semibold text-2xl block">
+                    Send message to employee
+                </label>
+                <textarea name="message" class="mt-2 mb-8 w-full text-xl p-2 shadow-lg" cols="30" rows="10"></textarea>
+                <button class="bg-blue-500 transition-all duration-150 hover:bg-blue-600 hover:shadow-lg py-2 px-4 text-white text-xl rounded-md" type="submit">
+                    Send
+                </button>
+            </form>
+        </div>
+        
+
+
+    </div>
+
+</body>
+</html>
