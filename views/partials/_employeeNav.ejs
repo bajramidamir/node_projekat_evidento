@@ -1,18 +1,18 @@
-<nav class="bg-blue-500 flex items-center justify-between p-4">
+<nav class="bg-blue-500 flex text-xl items-center justify-between p-4">
     <div class="hidden md:block">
-      <h1 class="text-3xl text-slate-100">
+      <h1 class="text-slate-100">
         Welcome <%= user.firstName %>
       </h1>
     </div>
-    <div class="text-slate-100 text-sm md:text-xl">
+    <div class="text-slate-100">
       <ul class="flex items-center align-middle">
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/employee_dashboard/chat">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 transition-all duration-150 ease-in-out p-2 rounded-lg" href="/employee_dashboard/chat">
             Chat
           </a>
         </li>
         <li>
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-400 transition-all duration-150 ease-in-out p-2 md:p-4 rounded-md" href="/employee_dashboard">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 transition-all duration-150 ease-in-out p-2 rounded-lg" href="/employee_dashboard">
             Dashboard
           </a>
         </li>
@@ -20,7 +20,7 @@
     </div>
     <div>
       <form action="/employee_dashboard/logout" method="get">
-        <button class="p-2 md:p-4 bg-blue-400  text-slate-100 rounded-md text-sm md:text-xl transition-all duration-150 hover:bg-blue-700 hover:shadow-md" type="submit">
+        <button class="p-2 bg-blue-600  text-slate-100 rounded-lg text-sm md:text-xl transition-all duration-150 hover:bg-blue-700 hover:shadow-md" type="submit">
           Logout
         </button>
       </form>
