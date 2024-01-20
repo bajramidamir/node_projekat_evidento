@@ -15,6 +15,15 @@
 
     <h1 class="px-6 mt-8 text-center text-3xl md:text-start md:text-3xl">My projects</h1>
 
+    <div class="mx-3 px-3 py-4 my-8 bg-slate-200 rounded-lg text-sm md:text-xl">
+        <form action="/employee_dashboard/input" method="post">
+            <label for="inputData" class="block mb-4">Quick task update:</label>
+            <input type="text" id="inputData" name="inputData" class="p-2 mr-4 " placeholder="#projekat ##task t5" required>
+            <button type="submit" class="p-2 bg-blue-500 transition-all duration-150 my-4 hover:bg-blue-700 hover:shadow-md rounded-lg text-white">Submit</button>
+        </form>
+    </div>
+    
+
     <div class="grid grid-cols-1 md:grid-cols-2 text-slate-100 my-8 gap-4">
         <% projects.forEach(project => { %>
             <div class="p-4 m-4 bg-blue-500 rounded-md">

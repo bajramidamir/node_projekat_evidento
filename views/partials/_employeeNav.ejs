@@ -4,7 +4,7 @@
         Welcome <%= user.firstName %>
       </h1>
     </div>
-    <div class="text-slate-100">
+    <div class="text-slate-100 hidden md:block">
       <ul class="flex items-center align-middle">
         <li class="mr-2 md:mr-4">
           <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 transition-all duration-150 ease-in-out p-2 rounded-lg" href="/employee_dashboard/chat">
@@ -25,5 +25,37 @@
         </button>
       </form>
     </div>
+    <button id="toggleBtn" class="block md:hidden">
+      <img src="/images/hamburger.svg" class="w-8" alt="hamburger">
+    </button>
   </nav>
-  
+
+</nav>
+<!-- mobile nav --> 
+<div id="mobileNav" class="bg-blue-200 w-full hidden md:hidden">
+ <ul class="w-full text-center">
+   <a href="/employee_dashboard/chat">
+     <li class="block border-b-2 py-2">
+       Chat
+     </li>
+   </a>
+   <a href="/employee_dashboard">
+     <li class="block py-2">
+       Dashboard
+     </li>
+   </a>
+ </ul>
+</div>
+
+
+<script>
+ document.addEventListener('DOMContentLoaded', function () {
+     var toggleBtn = document.getElementById('toggleBtn');
+     var mobileNav = document.getElementById('mobileNav');
+
+     toggleBtn.addEventListener('click', function () {
+         mobileNav.classList.toggle('hidden');
+         toggleBtn.firstChild.classlist.toggle('rotate-90');
+     });
+ });
+</script>
