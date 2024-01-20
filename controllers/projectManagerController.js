@@ -94,7 +94,7 @@ const reviewTask = async (req, res) => {
 };
 const sendReviewEmail = async (req, res) => {
     try {
-        const { username, status, message } = req.body;
+        const { username, status, projectId, taskId, message } = req.body;
         const employeeInfo = await userModel.getUserByUsername(username); 
 
         // hardcoded menadzerko email, for demonstration purposes
@@ -114,6 +114,9 @@ const sendReviewEmail = async (req, res) => {
         };
 
         await transporter.sendMail(mailOptions);
+
+        await projectModel.projectManagerUpdateTask(status, projectId, taskId);
+
         res.redirect('/project_manager_dashboard');
     } catch (error) {
         console.error(error);

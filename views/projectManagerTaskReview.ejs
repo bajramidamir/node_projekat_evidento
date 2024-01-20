@@ -29,6 +29,8 @@
         <div class="my-4">
             <form action="/project_manager_dashboard/send_review_email" method="post">
                 <input type="hidden" name="username" value="<%= assignedEmployee.username %>">
+                <input type="hidden" name="projectId" value="<%= taskInfo.project_id %>">
+                <input type="hidden" name="taskId" value="<%= taskInfo.task_id %>">
                 <label for="status" class="font-semibold text-2xl">
                     Task status
                 </label>

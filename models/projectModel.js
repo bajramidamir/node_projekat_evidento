@@ -174,7 +174,7 @@ async function getTasksForEmployeeOnProject(employeeId, projectId) {
 async function getTaskInfoById(taskId) {
     const client = await pool.connect();
     try {
-        const result = await client.query("SELECT * FROM project_task WHERE task_id = $1", [taskId]);
+        const result = await client.query("SELECT * FROM project_task WHERE task_id = $1 ORDER BY task_id ASC", [taskId]);
         return result.rows[0];
     } finally {
         client.release();
@@ -210,6 +210,15 @@ async function getReportForProject(projectManagerId, projectName) {
     };
 };
 
+async function projectManagerUpdateTask(status, projectId, taskId) {
+    const client = await pool.connect();
+    try {
+        await client.query('UPDATE project_task SET status = $1 WHERE project_id = $2 AND task_id = $3 ', [status, projectId, taskId]);
+    } finally {
+        client.release();
+    };
+};
+
 
 module.exports = {
     getProjectCount,
@@ -226,4 +235,5 @@ module.exports = {
     getTaskInfoById,
     updateTask,
     getReportForProject,
+    projectManagerUpdateTask
 };
