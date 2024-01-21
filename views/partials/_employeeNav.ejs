@@ -1,4 +1,4 @@
-<nav class="bg-blue-500 flex text-xl items-center justify-between p-4">
+<nav class="bg-blue-500 dark:bg-blue-900 flex text-xl items-center justify-between p-4">
     <div class="hidden md:block">
       <h1 class="text-slate-100">
         Welcome <%= user.firstName %>
@@ -7,12 +7,12 @@
     <div class="text-slate-100 hidden md:block">
       <ul class="flex items-center align-middle">
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 transition-all duration-150 ease-in-out p-2 rounded-lg" href="/employee_dashboard/chat">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-500 p-2 rounded-lg" href="/employee_dashboard/chat">
             Chat
           </a>
         </li>
         <li>
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 transition-all duration-150 ease-in-out p-2 rounded-lg" href="/employee_dashboard">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-500 p-2 rounded-lg" href="/employee_dashboard">
             Dashboard
           </a>
         </li>
@@ -26,21 +26,21 @@
       </form>
     </div>
     <button id="toggleBtn" class="block md:hidden">
-      <img src="/images/hamburger.svg" class="w-8" alt="hamburger">
+      <img src="/images/hamburger.svg" class="w-8 dark:invert" alt="hamburger">
     </button>
   </nav>
 
 </nav>
 <!-- mobile nav --> 
-<div id="mobileNav" class="bg-white w-full hidden md:hidden">
+<div id="mobileNav" class="bg-white dark:bg-gray-700 dark:text-slate-100 w-full hidden md:hidden">
  <ul class="w-full text-center">
    <a href="/employee_dashboard/chat">
-     <li class="block border-b-2 py-2">
+     <li class="block border-b-2 dark:border-b-gray-600 py-2">
        Chat
      </li>
    </a>
    <a href="/employee_dashboard">
-     <li class="block border-b-2 py-2">
+     <li class="block border-b-2 dark:border-b-gray-600 py-2">
        Dashboard
      </li>
    </a>
@@ -58,4 +58,21 @@
          toggleBtn.firstChild.classlist.toggle('rotate-90');
      });
  });
+ const toggleDarkMode = () => {
+      const htmlElement = document.documentElement;
+      htmlElement.classList.toggle('dark');
+
+      // Store the dark mode state in local storage
+      const isDarkMode = htmlElement.classList.contains('dark');
+      localStorage.setItem('darkMode', isDarkMode);
+    };
+
+    // Check local storage for dark mode preference on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      }
+    });
 </script>

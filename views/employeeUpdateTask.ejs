@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="font-montserrat">
+<body class="font-montserrat dark:bg-gray-800">
     
     <%- include('partials/_employeeNav', { user: user }); %>
 
 
-    <div class="bg-slate-100 p-16">
+    <div class="bg-slate-100 p-10 m-6 dark:bg-gray-700 dark:text-slate-100">
 
         <h1 class="text-3xl font-semibold mb-2">
             <%= taskInfo.task_name %>
@@ -26,16 +26,16 @@
         <form action="/employee_dashboard/update_task" method="post">
             <input type="hidden" name="projectId" value="<%= projectInfo.project_id %>">
             <input type="hidden" name="taskId" value="<%= taskInfo.task_id %>">
-            <label for="status" class="block text-slate-700 text-2xl mb-2">Task status</label>
-            <select name="status" class="p-2 bg-slate-200 text-xl mb-8 rounded-md">
+            <label for="status" class="block text-slate-700 dark:text-slate-100 text-2xl mb-2">Task status</label>
+            <select name="status" class="p-2 bg-slate-200 text-xl mb-8 dark:bg-gray-600 rounded-md">
                 <option value="In progress">In progress</option>
                 <option value="In review">In review</option>
                 <option value="On hold">On hold</option>
                 <option value="Done">Done</option>
             </select>
-            <label for="hoursWorked" class="block text-slate-700 text-2xl mb-2">Hours worked</label>
-            <input type="number" name="hoursWorked" class="p-2 bg-slate-200 rounded-md mb-8">
-            <button type="submit" class="bg-blue-500 block text-slate-200 p-2 text-xl rounded-md transition-all duration-150 ease-in-out hover:bg-blue-600">
+            <label for="hoursWorked" class="block text-slate-700 text-2xl dark:text-slate-100 mb-2">Hours worked</label>
+            <input type="number" name="hoursWorked" class="p-2 bg-slate-200 dark:bg-gray-600 rounded-md mb-8">
+            <button type="submit" class="bg-blue-500 dark:bg-blue-600 block text-slate-200 p-2 text-xl rounded-md transition-all duration-150 ease-in-out hover:bg-blue-600">
                 Update
             </button>
         </form>
