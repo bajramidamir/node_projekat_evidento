@@ -219,6 +219,14 @@ async function projectManagerUpdateTask(status, projectId, taskId) {
     };
 };
 
+async function quickInput(projectId, taskName, hoursWorked) {
+    const client = await pool.connect();
+    try {
+        await client.query('UPDATE project_task SET hours_worked = hours_worked + $1 WHERE project_id = $2 AND task_name = $3', [hoursWorked, projectId, taskName]);
+    } finally {
+        client.release();
+    };
+};
 
 module.exports = {
     getProjectCount,
@@ -235,5 +243,6 @@ module.exports = {
     getTaskInfoById,
     updateTask,
     getReportForProject,
-    projectManagerUpdateTask
+    projectManagerUpdateTask,
+    quickInput
 };

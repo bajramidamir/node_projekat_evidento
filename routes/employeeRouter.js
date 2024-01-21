@@ -10,6 +10,7 @@ router.get('/view_project', ensureAuthenticated, ensureEmployee, employeeControl
 router.get('/update_task', ensureAuthenticated, ensureEmployee, employeeController.getEmployeeUpdateTask);
 router.post('/update_task', ensureAuthenticated, ensureEmployee, projectController.updateTask);
 router.get('/chat', ensureAuthenticated, ensureEmployee, chatController.getChatView);
+router.post('/input', ensureAuthenticated, ensureEmployee, projectController.quickInput);
 
 
 
