@@ -16,8 +16,6 @@ router.post('/download_pdf', ensureAuthenticated, ensureProjectManager, projectM
 router.post('/review_task', ensureAuthenticated, ensureProjectManager, projectManagerController.reviewTask);
 router.post('/send_review_email', ensureAuthenticated, ensureProjectManager, projectManagerController.sendReviewEmail);
 
-
-
 router.get('/logout', (req, res) => {
     res.clearCookie('user');
     res.redirect('/');

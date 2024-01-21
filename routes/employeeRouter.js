@@ -12,10 +12,6 @@ router.post('/update_task', ensureAuthenticated, ensureEmployee, projectControll
 router.get('/chat', ensureAuthenticated, ensureEmployee, chatController.getChatView);
 router.post('/input', ensureAuthenticated, ensureEmployee, projectController.quickInput);
 
-
-
-
-
 router.get('/logout', (req, res) => {
     res.clearCookie('user');
     res.redirect('/');

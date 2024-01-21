@@ -1,7 +1,6 @@
 const pg = require('pg');
 require('dotenv').config();
 
-
 const config = {
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -137,7 +136,6 @@ async function createTask(projectName, taskName, taskDescription, assignedUser, 
         const projectId = projectIdQuery.rows[0].project_id;
         const assignedUserIdQuery = await client.query("SELECT user_id FROM users WHERE username = $1", [assignedUser]);
         const assignedUserId = assignedUserIdQuery.rows[0].user_id;
-
         await client.query("INSERT INTO project_task(project_id, task_name, description, assigned_to, due_date) VALUES ($1, $2, $3, $4, $5)", 
         [projectId, taskName, taskDescription, assignedUserId, dueDate]);
     } finally {
