@@ -1,4 +1,4 @@
-<nav class="bg-blue-500 flex items-center justify-between p-4 text-white">
+<nav class="bg-blue-500 dark:bg-blue-800 flex items-center justify-between p-4 text-slate-100">
     <h1 class="text-xl">
     Evidento Chat 
     </h1>
@@ -6,3 +6,23 @@
         Exit chatroom
     </a>
 </nav>
+
+<script>
+    const toggleDarkMode = () => {
+      const htmlElement = document.documentElement;
+      htmlElement.classList.toggle('dark');
+
+      // Store the dark mode state in local storage
+      const isDarkMode = htmlElement.classList.contains('dark');
+      localStorage.setItem('darkMode', isDarkMode);
+    };
+
+    // Check local storage for dark mode preference on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      }
+    });
+</script>

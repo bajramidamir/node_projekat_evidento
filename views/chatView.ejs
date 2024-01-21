@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
-<body class="font-montserrat bg-slate-100">
+<body class="font-montserrat bg-slate-100 dark:bg-gray-700">
 
     <%- include('partials/_chatNav', { user: user }); %>
 
@@ -32,7 +32,7 @@
     
     
     <form id="chatForm" class="my-10 flex mx-auto">
-        <input type="text" id="messageInput" class="p-2 text-xl mx-2 rounded-md w-full" placeholder="Type your message...">
+        <input type="text" id="messageInput" class="p-2 text-xl mx-2 dark:bg-gray-600 dark:text-slate-100 rounded-md w-full" placeholder="Type your message...">
         <button type="submit" class="bg-blue-500 p-2 mx-2 rounded-md">
             <img src="/images/send.svg" class="w-8 invert" alt="send">
         </button>

@@ -1,4 +1,4 @@
-<nav class="bg-blue-500 flex text-xl items-center justify-between p-4">
+<nav class="bg-blue-500 dark:bg-blue-800 flex text-xl items-center justify-between p-4">
     <div class="hidden md:block">
       <h1 class="text-slate-100">
         Welcome <%= user.firstName %>
@@ -7,17 +7,17 @@
     <div class="text-slate-100 hidden md:block">
       <ul class="flex items-center align-middle">
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 text-sm md:text-xl transition-all duration-150 ease-in-out p-2  rounded-lg" href="/project_manager_dashboard">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard">
             Dashboard
           </a>
         </li>
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 text-sm md:text-xl transition-all duration-150 ease-in-out p-2  rounded-lg" href="/project_manager_dashboard/projects">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/projects">
             Create Project
           </a>
         </li>
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 text-sm md:text-xl transition-all duration-150 ease-in-out p-2  rounded-lg" href="/project_manager_dashboard/chat">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/chat">
             Chat
           </a>
         </li>
@@ -66,5 +66,22 @@
             mobileNav.classList.toggle('hidden');
             toggleBtn.firstChild.classlist.toggle('rotate-90');
         });
+    });
+    const toggleDarkMode = () => {
+      const htmlElement = document.documentElement;
+      htmlElement.classList.toggle('dark');
+
+      // Store the dark mode state in local storage
+      const isDarkMode = htmlElement.classList.contains('dark');
+      localStorage.setItem('darkMode', isDarkMode);
+    };
+
+    // Check local storage for dark mode preference on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      }
     });
 </script>

@@ -13,6 +13,9 @@
 
     
     <%- include('partials/_employeeNav', { user: user }); %>
+    <button onclick="toggleDarkMode()" class="p-2 m-2 bg-blue-500 dark:bg-gray-500 rounded-lg">
+        <img src="/images/dark.svg" class="w-8 invert" alt="">
+      </button>
 
     <div class="bg-slate-100 w-full p-8 text-gray-800 dark:bg-gray-800 dark:text-slate-100">
         <h1 class="mb-4 text-3xl md:text-5xl font-medium">
