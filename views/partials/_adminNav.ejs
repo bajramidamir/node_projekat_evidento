@@ -31,26 +31,26 @@
     </form>
   </div>
   <button id="toggleBtn" class="block md:hidden">
-    <img src="/images/hamburger.svg" class="w-8" alt="hamburger">
+    <img src="/images/hamburger.svg" class="w-8 dark:invert" alt="hamburger">
   </button>
 </nav>
 
 </nav>
 <!-- mobile nav --> 
-<div id="mobileNav" class="bg-blue-200 w-full hidden md:hidden">
+<div id="mobileNav" class="bg-white dark:bg-gray-700 text-slate-800 font-medium dark:text-slate-100 w-full mb-2 hidden md:hidden">
  <ul class="w-full text-center">
    <a href="/admin_dashboard">
-     <li class="block border-b-2 py-2">
+     <li class="block border-b-2 dark:border-b-gray-800 py-2">
        Overview
      </li>
    </a>
    <a href="/admin_dashboard/users">
-     <li class="block border-b-2 py-2">
+     <li class="block border-b-2 dark:border-b-gray-800 py-2">
        Users
      </li>
    </a>
    <a href="/admin_dashboard/projects">
-     <li class="block py-2">
+     <li class="block border-b-2 dark:border-b-gray-800 py-2">
        Projects
      </li>
    </a>
@@ -69,7 +69,20 @@
      });
  });
  const toggleDarkMode = () => {
-    const htmlElement = document.documentElement;
-    htmlElement.classList.toggle('dark');
-  };
+      const htmlElement = document.documentElement;
+      htmlElement.classList.toggle('dark');
+
+      // Store the dark mode state in local storage
+      const isDarkMode = htmlElement.classList.contains('dark');
+      localStorage.setItem('darkMode', isDarkMode);
+    };
+
+    // Check local storage for dark mode preference on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      }
+    });
 </script>
