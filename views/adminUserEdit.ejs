@@ -13,11 +13,11 @@
 
 <body class="font-montserrat dark:bg-gray-800">
     <%- include('partials/_adminNav', { user: user }) %>
-        <div class="bg-slate-100 dark:bg-gray-700 p-4 m-4 text-center">
+        <div class="bg-slate-100 dark:bg-gray-700 p-4 mx-4 mt-8 md:w-1/2 md:mx-auto rounded-lg text-center">
             <h1 class="text-2xl md:text-3xl dark:text-slate-100 mb-8">
                 Edit User: <%= username %>          
             </h1>
-            <div class="text-center">
+            <div class="text-center dark:text-slate-100">
                 <form action="/admin_dashboard/update_user" method="post">
                     <input type="hidden" name="username" value="<%= username %>">
                     <input type="text" class="block p-2 mb-6 text-xl dark:bg-gray-600" name="newUsername" placeholder="New username" required>

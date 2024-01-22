@@ -11,6 +11,9 @@
 </head>
 <body class="font-montserrat dark:bg-gray-800">
     <%- include('partials/_projectManagerNav', { user: user }) %>
+    <button onclick="toggleDarkMode()" class="p-2 m-2 bg-blue-500 dark:bg-gray-500 rounded-lg">
+        <img src="/images/dark.svg" class="w-8 invert" alt="">
+      </button>
 
     <h1 class="px-6 mt-8 text-center text-3xl dark:text-slate-100 md:text-start md:text-3xl">
         My projects
@@ -29,14 +32,14 @@
                     <form action="/project_manager_dashboard/view_project" method="get">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
                         <input type="hidden">
-                        <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl hover:bg-blue-600 bg-blue-400 rounded-md">
+                        <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl dark:bg-blue-700 dark:hover:bg-blue-600 hover:bg-blue-600 bg-blue-400 rounded-md">
                             View Project
                         </button>
                     </form>
                     <form action="/project_manager_dashboard/get_project_report">
                         <input type="hidden" name="projectManagerId" value="<%= user.id %>">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
-                        <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl hover:bg-blue-600 bg-blue-400 rounded-md">
+                        <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl dark:bg-blue-700 dark:hover:bg-blue-600 hover:bg-blue-600 bg-blue-400 rounded-md">
                             Project Report
                         </button>
                     </form>

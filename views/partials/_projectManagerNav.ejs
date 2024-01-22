@@ -1,4 +1,4 @@
-<nav class="bg-blue-500 dark:bg-blue-800 flex text-xl items-center justify-between p-4">
+<nav class="bg-blue-500 dark:bg-blue-900 flex text-xl items-center justify-between p-4">
     <div class="hidden md:block">
       <h1 class="text-slate-100">
         Welcome <%= user.firstName %>
@@ -7,17 +7,17 @@
     <div class="text-slate-100 hidden md:block">
       <ul class="flex items-center align-middle">
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard">
             Dashboard
           </a>
         </li>
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/projects">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/projects">
             Create Project
           </a>
         </li>
         <li class="mr-2 md:mr-4">
-          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-800 dark:hover:bg-blue-500 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/chat">
+          <a class="hover:bg-blue-700 hover:shadow-md bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 text-sm md:text-xl p-2  rounded-lg" href="/project_manager_dashboard/chat">
             Chat
           </a>
         </li>
@@ -36,20 +36,20 @@
     </button>
   </nav>
    <!-- mobile nav --> 
-   <div id="mobileNav" class="bg-white w-full hidden md:hidden">
+   <div id="mobileNav" class="bg-white w-full dark:bg-gray-700 dark:text-slate-100 hidden md:hidden">
     <ul class="w-full text-center">
       <a href="/project_manager_dashboard">
-        <li class="block border-b-2 py-2">
+        <li class="block border-b-2 dark:border-b-gray-800 py-2">
           Dashboard
         </li>
       </a>
       <a href="/project_manager_dashboard/projects">
-        <li class="block border-b-2 py-2">
+        <li class="block border-b-2 dark:border-b-gray-800 py-2">
           Create project
         </li>
       </a>
       <a href="/project_manager_dashboard/chat">
-        <li class="block border-b-2 py-2">
+        <li class="block border-b-2 dark:border-b-gray-800 py-2">
           Chat
         </li>
       </a>

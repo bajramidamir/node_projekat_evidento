@@ -23,7 +23,7 @@
         <form action="/employee_dashboard/input" method="post">
             <label for="inputData" class="block mb-4 dark:text-slate-100 text-xl">Quick input:</label>
             <input type="text" name="inputData" class="p-2 mr-4 dark:bg-gray-600 dark:placeholder-gray-400 font-medium" placeholder="#projekat #task #5" required>
-            <button type="submit" class="p-2 bg-blue-500 dark:bg-blue-600 transition-all duration-150 my-4 hover:bg-blue-700 hover:shadow-md rounded-lg text-white">Submit</button>
+            <button type="submit" class="p-2 bg-blue-500 dark:bg-blue-700 dark:hover:bg-blue-600 transition-all duration-150 my-4 hover:bg-blue-700 hover:shadow-md rounded-lg text-white">Submit</button>
         </form>
     </div>
     
@@ -40,7 +40,7 @@
                     <input type="hidden" name="projectName" value="<%= project.project_name %>">
                     <input type="hidden" name="projectId" value="<%= project.project_id %>">
                     <input type="hidden" name="employeeId" value="<%= user.id %>">
-                    <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl hover:bg-blue-600 bg-blue-400 dark:bg-blue-600 rounded-md">
+                    <button type="submit" class="p-2 transition-all duration-150 ease-in-out md:text-xl hover:bg-blue-600 bg-blue-400 dark:bg-blue-700 dark:hover:bg-blue-600 rounded-md">
                         View Tasks
                     </button>
                 </form>

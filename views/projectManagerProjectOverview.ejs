@@ -9,11 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="font-montserrat">
+<body class="font-montserrat dark:bg-gray-800">
     
     <%- include('partials/_projectManagerNav', { user: user }); %>
+    <button onclick="toggleDarkMode()" class="p-2 m-2 bg-blue-500 dark:bg-gray-500 rounded-lg">
+        <img src="/images/dark.svg" class="w-8 invert" alt="">
+      </button>
 
-    <div class="bg-slate-100 w-full p-8 text-gray-800">
+    <div class="bg-slate-100 w-full p-8 text-gray-800 dark:bg-gray-700 dark:text-slate-100">
         <h1 class="mb-4 text-3xl md:text-5xl font-medium">
             <%= project.project_name %>
         </h1>
@@ -24,14 +27,14 @@
         <div class="overflow-auto relative mb-12">
             <table class="table-auto w-full">
                 <thead class="mb-4">
-                    <tr class="bg-blue-400 text-slate-100">
+                    <tr class="bg-blue-400 text-slate-100 dark:bg-gray-900">
                       <th class="p-2">Assigned users</th>
                       <th class="p-2">Full name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% employees.forEach(employee => { %>
-                        <tr class="odd:bg-slate-300 h-16">
+                        <tr class="odd:bg-slate-300 dark:odd:bg-gray-800 h-16">
                             <td class="p-4 text-center">
                                 <%= employee.username %>
                             </td>
@@ -55,21 +58,21 @@
 
         <form action="/project_manager_dashboard/create_task" method="post" class="mb-4 text-xl">
             <input type="hidden" value="<%= project.project_name %>" name="projectName">
-            <label for="taskName" class="text-gray-800 font-medium mb-4">Task name</label>
-            <input type="text" class="block p-2 mb-4 bg-white" name="taskName">
-            <label for="taskDescription" class="text-gray-800 font-medium mb-4">Task description</label>
-            <textarea name="taskDescription" rows="4" class="mb-4 w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
-            <label for="assignedUser" class="text-gray-800 font-medium mb-4">Assign To Employee</label>
-            <select name="assignedUser" class="block bg-white mb-4 p-2">
+            <label for="taskName" class="text-gray-800 dark:text-slate-100 font-medium mb-4">Task name</label>
+            <input type="text" class="block p-2 mb-4 bg-white dark:bg-gray-600" name="taskName">
+            <label for="taskDescription" class="text-gray-800 dark:text-slate-100 font-medium mb-4">Task description</label>
+            <textarea name="taskDescription" rows="4" class="mb-4 w-full dark:bg-gray-600 dark:border-0 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"></textarea>
+            <label for="assignedUser" class="text-gray-800 dark:text-slate-100 font-medium mb-4">Assign To Employee</label>
+            <select name="assignedUser" class="block bg-white dark:bg-gray-600 mb-4 p-2">
                 <% employees.forEach(employee => { %>
                     <option value="<%= employee.username %>">
                         <%= employee.username %>
                     </option>
                 <% }); %>
             </select>
-            <label for="dueDate" class="mb-4 text-gray-800 font-medium">Due date</label>
-            <input type="date" class="block mb-4" name="dueDate">
-            <button type="submit" class="p-2 bg-blue-600 rounded-md text-slate-100 text-xl">Create task</button>            
+            <label for="dueDate" class="mb-4 text-gray-800 dark:text-slate-100 font-medium">Due date</label>
+            <input type="date" class="block mb-4 dark:bg-gray-600" name="dueDate">
+            <button type="submit" class="p-2 bg-blue-600 dark:bg-blue-800 rounded-md text-slate-100 text-xl">Create task</button>            
         </form>
 
 
@@ -78,7 +81,7 @@
         </h1> 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <% tasks.forEach(task => { %>
-                <div class="p-4 bg-blue-500 text-gray-50 text-xl rounded-md drop-shadow-xl">
+                <div class="p-4 bg-blue-500 dark:bg-blue-800 text-gray-50 text-xl rounded-md drop-shadow-xl">
                     <h1 class="text-2xl font-medium mb-4"> <%= task.task_name %> </h1>
                     <h1 class="mb-4"> <%= task.description %> </h1>
                     <h1 class="mb-4"> Status: <%= task.status %> </h1>

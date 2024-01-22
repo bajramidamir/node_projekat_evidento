@@ -12,6 +12,9 @@
 <body class="font-montserrat dark:bg-gray-800">
     
     <%- include('partials/_projectManagerNav', { user: user }) %>
+    <button onclick="toggleDarkMode()" class="p-2 m-2 bg-blue-500 dark:bg-gray-500 rounded-lg">
+      <img src="/images/dark.svg" class="w-8 invert" alt="">
+    </button>
 
     <div>
     <div class=" p-4 m-4  text-xl bg-slate-100 dark:bg-gray-700 dark:text-slate-100 shadow-md rounded-md">
