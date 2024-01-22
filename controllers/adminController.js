@@ -5,7 +5,9 @@ const getAdminDashboard = async (req, res) => {
     try {
         const userCount = await userModel.getUserCount();
         const projectCount = await projectModel.getProjectCount();
-        res.render('adminDashboard', { user: req.user, userCount, projectCount });
+        const allUsers = await userModel.getAllUsers();
+        const allProjects = await projectModel.getAllProjects();
+        res.render('adminDashboard', { user: req.user, userCount, projectCount, allUsers, allProjects });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
@@ -53,6 +55,27 @@ const getAdminEditUser = async (req, res) => {
         res.status(500).send("Internal Server Error");
     };
 };
+const getAdminReport = async (req, res) => {
+    // initialize data to pass to EJS
+    let reportData;
+    try {
+        const { reportNumber } = req.body;
+
+        switch(reportNumber) {
+            case 1:
+                reportData = await projectModel.getEmployeeHours();
+                break;
+            case 2:
+                reportData = await projectModel.getProjectManagersAndProjects();
+                break;
+        }
+
+        res.render('adminSelectedReport', { user: req.user, reportData });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    };
+};
 
 module.exports = {
     getAdminDashboard,
@@ -60,4 +83,5 @@ module.exports = {
     getAdminProjectsPanel,
     getAdminViewProject,
     getAdminEditUser,
+    getAdminReport
 };

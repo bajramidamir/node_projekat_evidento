@@ -15,6 +15,8 @@ router.post('/create_user', ensureAuthenticated, ensureAdmin, userController.cre
 router.post('/delete_user', ensureAuthenticated, ensureAdmin, userController.deleteUser);
 router.get('/edit_user', ensureAuthenticated, ensureAdmin, adminController.getAdminEditUser);
 router.post('/update_user', ensureAuthenticated, ensureAdmin, userController.updateUser);
+router.post('/get_report', ensureAuthenticated, ensureAdmin, adminController.getAdminReport);
+
 
 router.get('/logout', (req, res) => {
     res.clearCookie('user');

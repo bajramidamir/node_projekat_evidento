@@ -226,6 +226,48 @@ async function quickInput(projectId, taskName, hoursWorked) {
     };
 };
 
+async function getAllProjects() {
+    const client = await pool.connect();
+    try {
+        const result = await client.query("SELECT * FROM projects");
+        return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
+async function getEmployeeHours() {
+    const client = await pool.connect();
+    const query = `SELECT u.username, CONCAT(u.first_name, ' ', u.last_name) AS name,
+                    pt.hours_worked, pt.task_name,
+                    p.project_name
+                    FROM projects p
+                    INNER JOIN project_employees pe ON p.project_id = pe.project_id
+                    INNER JOIN users u ON u.user_id = pe.user_id
+                    INNER JOIN project_task pt ON p.project_id = pt.project_id AND u.user_id = pt.assigned_to
+                    ORDER BY hours_worked DESC;`
+    try {
+        const result = await client.query(query);
+        return result.rows;
+    } finally {
+        client.release();
+    };
+};
+
+async function getProjectManagersAndProjects() {
+    const client = await pool.connect();
+    const query = `SELECT u.username, CONCAT(u.first_name, ' ', u.last_name) AS name,
+                    p.project_name
+                    FROM projects p
+                    INNER JOIN public.users u on p.project_manager_id = u.user_id;`;
+    try {
+        const result = await client.query(query);
+        return result.rows;      
+    } finally {
+        client.release();
+    };
+};
+
 module.exports = {
     getProjectCount,
     createNewProject,
@@ -242,5 +284,8 @@ module.exports = {
     updateTask,
     getReportForProject,
     projectManagerUpdateTask,
-    quickInput
+    quickInput,
+    getAllProjects,
+    getEmployeeHours,
+    getProjectManagersAndProjects
 };
