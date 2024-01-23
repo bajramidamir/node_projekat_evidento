@@ -88,14 +88,23 @@
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
                     <h1 class="mb-4">Due: <span class="taskEndDate"><%= task.due_date %></span> </h1>
+                    <% if (new Date(task.due_date) < new Date() && task.status !== 'Done') { %>
+                        <p class="text-red-600 font-bold bg-red-400 p-4">
+                            Late
+                        </p>
+                    <% }; %>
                     <h1 class="mb-4">Hours worked on task: <%= task.hours_worked %> </h1>
                     <form action="/project_manager_dashboard/review_task" method="post">
                         <input type="hidden" name="taskId" value="<%= task.task_id %>">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
-                        <button class="p-2 text-white rounded-md transition-all duration-150 bg-blue-600 hover:bg-blue-700 dark:border dark:border-blue-800 dark:bg-blue-900 dark:hover:bg-blue-800 hover:shadow-md" type="submit">
-                            Review task
-                        </button>
+                    
+                        <% if (task.status !== 'Done') { %>
+                            <button class="p-2 text-white rounded-md transition-all duration-150 bg-blue-600 hover:bg-blue-700 dark:border dark:border-blue-800 dark:bg-blue-900 dark:hover:bg-blue-800 hover:shadow-md" type="submit">
+                                Review task
+                            </button>
+                        <% } %>
                     </form>
+                    
                 </div>
             <% }); %>
         </div>

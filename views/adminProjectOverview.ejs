@@ -97,6 +97,11 @@
                     <% const assignedEmployee = employees.find(employee => employee.user_id === task.assigned_to); %>
                     <h1 class="mb-4"> Assigned to: <strong><%= assignedEmployee.first_name + " " + assignedEmployee.last_name  %></strong> </h1>
                     <h1 class="mb-4">Due: <span class="taskEndDate"><%= task.due_date %></span></h1>
+                    <% if (new Date(task.due_date) < new Date() && task.status !== 'Done') { %>
+                        <p class="text-red-600 font-bold bg-red-400 p-4">
+                            Late
+                        </p>
+                    <% }; %>
                     <h1>Hours worked on task: <%= task.hours_worked %> </h1>
                 </div>
             <% }); %>

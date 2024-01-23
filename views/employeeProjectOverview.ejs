@@ -52,9 +52,11 @@
                     <form action="/employee_dashboard/update_task" method="get">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
                         <input type="hidden" name="taskId" value="<%= task.task_id %>">
-                        <button type="submit" class="p-3 bg-blue-600 rounded-md transition-all duration-150 hover:bg-blue-700 ease-in-out">
-                            Update task
-                        </button>
+                        <% if (task.status !== 'Done') { %>
+                            <button type="submit" class="p-3 bg-blue-600 rounded-md transition-all duration-150 hover:bg-blue-700 ease-in-out">
+                                Update task
+                            </button>
+                        <% } %>
                     </form>
                 </div>
             <% }); %>
