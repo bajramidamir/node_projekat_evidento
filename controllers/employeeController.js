@@ -8,7 +8,9 @@ const getEmployeeDashboard = async (req, res) => {
         res.render("employeeDashboard", { user: req.user, projects });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -21,7 +23,9 @@ const getEmployeeViewProject = async (req, res) => {
         res.render("employeeProjectOverview", { user: req.user, employees, project, tasks });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -33,7 +37,9 @@ const getEmployeeUpdateTask = async (req, res) => {
         res.render("employeeUpdateTask", { user: req.user, taskInfo, projectInfo });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 

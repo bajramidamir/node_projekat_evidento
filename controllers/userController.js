@@ -40,7 +40,10 @@ const loginUser = async (req, res) => {
                         res.redirect('/project_manager_dashboard');
                     }
                 };
-            });
+            }); 
+        } else {
+            const errorMessage = "Incorrect username/password. Please try again."
+            res.render('loginSignup', { errorMessage });
         };
     } catch (err) {
         console.error(err);
@@ -55,7 +58,9 @@ const createUser = async (req, res) => {
         res.redirect('/admin_dashboard/users');
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error creating user');
+        const errorMessage = "Error creating user"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     }
 };
 
@@ -66,7 +71,9 @@ const deleteUser = async (req, res) => {
         res.redirect('/admin_dashboard/users');
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error deleting user');
+        const errorMessage = "Error deleting user!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -77,7 +84,9 @@ const updateUser = async (req, res) => {
         res.redirect('/admin_dashboard/users');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error updating user");
+        const errorMessage = "Error updating user!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 

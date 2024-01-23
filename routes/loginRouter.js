@@ -4,7 +4,8 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 router.get('/', (req, res) => {
-    res.render('loginSignup');
+    const errorMessage = "";
+    res.render('loginSignup', { errorMessage } );
 });
 router.post('/login', userController.loginUser)
 

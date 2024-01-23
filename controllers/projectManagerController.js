@@ -14,7 +14,9 @@ const getProjectManagerDashboard = async (req, res) => {
         res.render("projectManagerDashboard", { user: req.user, projects });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getProjectManagerProjectsPanel = async (req, res) => {
@@ -23,7 +25,9 @@ const getProjectManagerProjectsPanel = async (req, res) => {
         res.render('projectManagerProjectsPanel', { user: req.user, employees });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getProjectManagerViewProject = async (req, res) => {
@@ -35,7 +39,9 @@ const getProjectManagerViewProject = async (req, res) => {
         res.render("projectManagerProjectOverview", { user: req.user, employees, project, tasks });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getProjectReport = async (req, res) => {
@@ -45,7 +51,9 @@ const getProjectReport = async (req, res) => {
         res.render('projectManagerProjectReport', { user: req.user, reports, projectManagerId });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const downloadReportAsPdf = async (req, res) => {
@@ -78,7 +86,9 @@ const downloadReportAsPdf = async (req, res) => {
         res.send(pdfBuffer);
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Internal server error. Please try again later!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const reviewTask = async (req, res) => {
@@ -89,7 +99,9 @@ const reviewTask = async (req, res) => {
         res.render('projectManagerTaskReview', { user: req.user, taskInfo, employees });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const sendReviewEmail = async (req, res) => {
@@ -120,7 +132,9 @@ const sendReviewEmail = async (req, res) => {
         res.redirect('/project_manager_dashboard');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 

@@ -10,7 +10,9 @@ const getAdminDashboard = async (req, res) => {
         res.render('adminDashboard', { user: req.user, userCount, projectCount, allUsers, allProjects });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getAdminUserPanel = async (req, res) => {
@@ -19,7 +21,9 @@ const getAdminUserPanel = async (req, res) => {
         res.render('adminUserPanel', { user: req.user, users });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getAdminProjectsPanel = async (req, res) => {
@@ -30,7 +34,9 @@ const getAdminProjectsPanel = async (req, res) => {
         res.render('adminProjectsPanel', { user: req.user, employees, projectManagers, projects });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getAdminViewProject = async (req, res) => {
@@ -43,7 +49,9 @@ const getAdminViewProject = async (req, res) => {
         res.render('adminProjectOverview', { user: req.user, employees, project, tasks, projectManager });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getAdminEditUser = async (req, res) => {
@@ -52,7 +60,9 @@ const getAdminEditUser = async (req, res) => {
         res.render('adminUserEdit', { user: req.user, username });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 const getAdminReport = async (req, res) => {
@@ -70,7 +80,9 @@ const getAdminReport = async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Something really went wrong if this catch block fired"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 

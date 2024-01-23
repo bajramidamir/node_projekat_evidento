@@ -29,13 +29,17 @@ function ensureAuthenticated(req, res, next) {
         req.user = JSON.parse(userCookie);
         return next();
     }
-    res.status(401).send("Unauthorized");
+    res.status(401);
+    const errorMessage = "Unauthorized";
+    res.render('fourOhOne', { errorMessage });
 };
 function ensureAdmin(req, res, next) {
     if (req.user.role === 'admin') {
         return next();
     };
-    res.status(403).send('Permission denied');
+    res.status(403);
+    const errorMessage = "Permission denied";
+    res.render('fourOhThree', { errorMessage });
 };
 
 module.exports = router;

@@ -11,27 +11,26 @@
 </head>
 <body>
     <body>
-        <div class="p-4 m-4 bg-blue-500 dark:bg-blue-800 text-slate-100">
+        <div class="p-4 m-4 bg-blue-500 dark:bg-blue-800 text-slate-100 overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
                 <thead>
                     <tr>
-                        <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Username</th>
-                        <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                        <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Project Name</th>
+                        <th class="px-4 md:px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                        <th class="px-4 md:px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                        <th class="px-4 md:px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Project Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% reportData.forEach(data => { %>
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap"><%= data.username %></td>
-                            <td class="px-6 py-4 whitespace-no-wrap"><%= data.name %></td>
-                            <td class="px-6 py-4 whitespace-no-wrap"><%= data.project_name %></td>
+                            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-no-wrap"><%= data.username %></td>
+                            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-no-wrap"><%= data.name %></td>
+                            <td class="px-4 md:px-6 py-2 md:py-4 whitespace-no-wrap"><%= data.project_name %></td>
                         </tr>
                     <% }); %>
                 </tbody>
             </table>
         </div>
     </body>
-    
 </body>
 </html>

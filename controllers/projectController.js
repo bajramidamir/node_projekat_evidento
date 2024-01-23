@@ -7,7 +7,9 @@ const createProject = async (req, res) => {
         res.redirect('back');
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal Server Error');
+        const errorMessage = "Oops! Please check your input!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -18,7 +20,9 @@ const createTask = async (req, res) => {
         res.redirect('back');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Oops! Please check your input!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -29,7 +33,9 @@ const updateTask = async (req, res) => {
         res.redirect('/employee_dashboard');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Oops! Please check your input!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
@@ -50,7 +56,7 @@ const quickInput = async (req, res) => {
         res.redirect('back');
     } catch (error) {
         console.error(error);
-        const errorMessage = "Oops! Error detected! Double check your project and task names!"
+        const errorMessage = "Oops! Double check your project and task names!"
         res.status(500);
         res.render('fiveHundred', { user: req.user, errorMessage });
     };
