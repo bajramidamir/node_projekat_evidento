@@ -17,7 +17,6 @@ router.get('/edit_user', ensureAuthenticated, ensureAdmin, adminController.getAd
 router.post('/update_user', ensureAuthenticated, ensureAdmin, userController.updateUser);
 router.post('/get_report', ensureAuthenticated, ensureAdmin, adminController.getAdminReport);
 
-
 router.get('/logout', (req, res) => {
     res.clearCookie('user');
     res.redirect('/');

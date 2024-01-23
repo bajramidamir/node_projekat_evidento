@@ -18,15 +18,15 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2">
 
-      <div class="md:p-4 md:m-8 p-4 m-4 h-64 rounded-lg text-2xl bg-blue-500 dark:bg-blue-800 text-slate-100">
+      <div class="md:p-4 md:m-8 p-4 m-4 h-64 rounded-lg text-2xl bg-blue-500 dark:bg-blue-900 text-slate-100">
         <h1 class="mb-2 text-3xl font-medium">
           Overview
         </h1>
-        <p>Total users: <%= userCount.count %></p>
+        <p>Total users: <%= userCount.count - 1 %></p>
         <p>Total projects: <%= projectCount.count %></p>
       </div>
 
-      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-800 text-slate-100">
+      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-900 text-slate-100">
         <h1 class="mb-2 text-3xl font-medium">
           Users
         </h1>
@@ -37,7 +37,7 @@
         <% }); %>
       </div>
 
-      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-800 text-slate-100">
+      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-900 text-slate-100">
         <h1 class="mb-2 text-3xl font-medium">
           Projects
         </h1>
@@ -48,7 +48,7 @@
         <% }); %>
       </div>
 
-      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-800 text-slate-100">
+      <div class="md:p-4 md:m-8 p-4 m-4 h-64 overflow-scroll rounded-lg text-2xl bg-blue-500 dark:bg-blue-900 text-slate-100">
         <h1 class="mb-2 text-3xl font-medium">
           Reports
         </h1>
@@ -57,7 +57,7 @@
             <option value="1">Get employee task hours</option>
             <option value="2">Get project managers and projects</option>
           </select>
-          <button type="submit" class="p-2 bg-blue-500 dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-600 rounded-md block my-2">
+          <button type="submit" class="p-2 bg-blue-500 dark:bg-blue-900 dark:hover:bg-blue-800 dark:border dark:border-blue-800  hover:bg-blue-600  rounded-md block my-4">
             Submit
           </button>
         </form>

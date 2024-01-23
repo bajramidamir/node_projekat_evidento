@@ -59,18 +59,15 @@ const getAdminReport = async (req, res) => {
     // initialize data to pass to EJS
     let reportData;
     try {
-        const { reportNumber } = req.body;
-
+        const reportNumber = parseInt(req.body.reportNumber, 10); // converting the incoming char to an integer
         switch(reportNumber) {
             case 1:
                 reportData = await projectModel.getEmployeeHours();
-                break;
+                res.render('adminSelectedReportOne', { user: req.user, reportData });
             case 2:
                 reportData = await projectModel.getProjectManagersAndProjects();
-                break;
+                res.render('adminSelectedReportTwo', { user: req.user, reportData });
         }
-
-        res.render('adminSelectedReport', { user: req.user, reportData });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

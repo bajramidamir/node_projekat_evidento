@@ -81,7 +81,7 @@
         </h1> 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <% tasks.forEach(task => { %>
-                <div class="p-4 bg-blue-500 dark:bg-blue-800 text-gray-50 text-xl rounded-md drop-shadow-xl">
+                <div class="p-4 bg-blue-500 dark:bg-blue-900 text-gray-50 text-xl rounded-md drop-shadow-xl">
                     <h1 class="text-2xl font-medium mb-4"> <%= task.task_name %> </h1>
                     <h1 class="mb-4"> <%= task.description %> </h1>
                     <h1 class="mb-4"> Status: <%= task.status %> </h1>
@@ -92,7 +92,7 @@
                     <form action="/project_manager_dashboard/review_task" method="post">
                         <input type="hidden" name="taskId" value="<%= task.task_id %>">
                         <input type="hidden" name="projectName" value="<%= project.project_name %>">
-                        <button class="p-2 text-white rounded-md transition-all duration-150 bg-blue-600 hover:bg-blue-700 hover:shadow-md" type="submit">
+                        <button class="p-2 text-white rounded-md transition-all duration-150 bg-blue-600 hover:bg-blue-700 dark:border dark:border-blue-800 dark:bg-blue-900 dark:hover:bg-blue-800 hover:shadow-md" type="submit">
                             Review task
                         </button>
                     </form>

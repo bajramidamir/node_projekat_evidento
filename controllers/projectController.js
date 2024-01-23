@@ -50,7 +50,9 @@ const quickInput = async (req, res) => {
         res.redirect('back');
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        const errorMessage = "Oops! Error detected! Double check your project and task names!"
+        res.status(500);
+        res.render('fiveHundred', { user: req.user, errorMessage });
     };
 };
 
