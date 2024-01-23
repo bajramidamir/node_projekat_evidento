@@ -42,7 +42,7 @@ const loginUser = async (req, res) => {
                 };
             }); 
         } else {
-            const errorMessage = "Incorrect username/password. Please try again."
+            const errorMessage = "Incorrect username/password."
             res.render('loginSignup', { errorMessage });
         };
     } catch (err) {

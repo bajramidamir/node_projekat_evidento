@@ -26,7 +26,7 @@
             <%= taskInfo.description %>
         </p>
 
-        <form action="/employee_dashboard/update_task" method="post">
+        <form action="/employee_dashboard/update_task" autocomplete="off" method="post">
             <input type="hidden" name="projectId" value="<%= projectInfo.project_id %>">
             <input type="hidden" name="taskId" value="<%= taskInfo.task_id %>">
             <label for="status" class="block text-slate-700 dark:text-slate-100 text-2xl mb-2">Task status</label>

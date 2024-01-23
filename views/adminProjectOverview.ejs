@@ -65,7 +65,7 @@
         </h1>
 
 
-        <form action="/admin_dashboard/create_task" method="post" class="my-8 text-xl">
+        <form action="/admin_dashboard/create_task" autocomplete="off" method="post" class="my-8 text-xl">
             <input type="hidden" value="<%= project.project_name %>" name="projectName">
             <label for="taskName" class="text-gray-800 dark:text-slate-100 font-medium text-2xl mb-4">Task name</label>
             <input type="text" class="block p-2 mb-4 dark:bg-gray-600 text-xl bg-white" name="taskName">

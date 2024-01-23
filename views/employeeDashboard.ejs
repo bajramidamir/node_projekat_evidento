@@ -20,9 +20,9 @@
     <h1 class="px-6 mt-8 text-center text-3xl md:text-start dark:text-slate-100 md:text-3xl">My projects</h1>
 
     <div class="mx-3 px-3 py-4 my-8 bg-slate-200 dark:bg-gray-700 rounded-lg text-sm md:text-xl">
-        <form action="/employee_dashboard/input" method="post">
+        <form action="/employee_dashboard/input" autocomplete="off" method="post">
             <label for="inputData" class="block mb-4 dark:text-slate-100 text-xl">Quick input:</label>
-            <input type="text" name="inputData" class="p-2 mr-4 dark:bg-gray-600 dark:placeholder-gray-400 font-medium" placeholder="#projekat #task #5" required>
+            <input type="text" name="inputData" class="p-2 mr-4 dark:bg-gray-600 dark:text-slate-100 dark:placeholder-gray-400 font-medium" placeholder="#projekat #task #5" required>
             <button type="submit" class="p-2 bg-blue-500 dark:bg-blue-700 dark:hover:bg-blue-600 transition-all duration-150 my-4 hover:bg-blue-700 hover:shadow-md rounded-lg text-white">Submit</button>
         </form>
     </div>
